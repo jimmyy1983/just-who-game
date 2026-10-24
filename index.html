@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eee5d4"><meta name="description" content="收集时钟，门开了就走。一场藏在速写本里的手绘追逐。">
+  <title>刚才是谁？</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ctext y='32' font-size='32'%3E🕰%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main id="book" class="book home">
+  <section id="menu" class="menu" aria-label="开始游戏">
+    <div class="intro"><span class="eyebrow">一页未写完的故事</span><h1>刚才是谁<span>？</span></h1><div class="pencil-rule"></div><p class="tagline">收集时钟，门开了就走。</p><div class="plane" aria-hidden="true">⌁ ─ ─ ✧</div><p class="whisper">有些脚步声，<br>好像从刚才就跟着你。</p><a class="card-link" href="./assets/character-card.png" target="_blank" rel="noopener">翻开主角手记 ↗</a></div>
+    <div class="choose"><p class="choose-label">选一个身影，推开这扇门。</p><div class="characters" role="group" aria-label="选择角色">
+      <button class="character selected" data-character="boy" aria-pressed="true"><canvas width="200" height="320" aria-hidden="true"></canvas><span class="name">林一 <small>男</small></span><span class="character-note">总爱回头确认</span><span class="choice-mark" aria-hidden="true">✓</span></button>
+      <button class="character" data-character="girl" aria-pressed="false"><canvas width="200" height="320" aria-hidden="true"></canvas><span class="name">小禾 <small>女</small></span><span class="character-note">把好奇心藏进口袋</span><span class="choice-mark" aria-hidden="true">✓</span></button>
+    </div><button id="start" class="paper-button primary" disabled>正在翻开速写本…</button><div class="menu-links"><button id="records-open" class="text-button">本机纪录</button><button id="help-open" class="text-button">怎么玩</button><button class="text-button mute" aria-label="静音">声音 开</button></div><p id="load-status" class="loading" role="status"></p></div>
+  </section>
+  <section id="play" class="play" hidden aria-label="游戏">
+    <canvas id="scene" width="480" height="720" tabindex="0" aria-label="游戏区域，使用方向键、WASD或拖动移动"></canvas>
+    <div id="hud" class="hud"><div class="collection"><canvas id="hud-clock" width="56" height="62" aria-hidden="true"></canvas><span id="total">0</span><span id="room-count">0/10</span></div><div class="hud-actions"><button id="pause" class="icon-button" aria-label="暂停">Ⅱ</button><button class="icon-button mute" aria-label="静音">♪</button></div></div>
+    <div id="hint" class="hint" aria-live="polite"></div>
+  </section>
+  <div id="pause-panel" class="overlay" hidden><section class="note" role="dialog" aria-modal="true" aria-labelledby="pause-title"><span class="eyebrow">把这一页折起来</span><h2 id="pause-title">歇一会儿。</h2><p>脚步声也停下了。</p><button id="resume" class="paper-button primary">继续走</button><button id="pause-home" class="text-button">回到封面</button></section></div>
+  <div id="result" class="overlay" hidden><section class="note result-note" role="dialog" aria-modal="true" aria-labelledby="result-title"><span id="result-kicker" class="eyebrow"></span><h2 id="result-title"></h2><p id="result-caption" class="result-caption"></p><p id="result-time" class="small"></p><button id="retry" class="paper-button primary">再试一次</button><button id="result-records" class="text-button">本机纪录</button><button id="result-home" class="text-button">回到封面</button></section></div>
+  <div id="records" class="overlay" hidden><section class="note records-note" role="dialog" aria-modal="true" aria-labelledby="records-title"><button id="records-close" class="close" aria-label="关闭本机纪录">×</button><span class="eyebrow">只留在这台设备上</span><h2 id="records-title">本机纪录</h2><div class="record-tabs" role="group" aria-label="纪录类型"><button data-sort="count" class="active" aria-pressed="true">收集数榜</button><button data-sort="time" aria-pressed="false">有效生存时间榜</button></div><p class="small">每榜保留前 20 条 · 暂停与翻页不计时</p><div class="table-wrap"><table><thead><tr><th>名次</th><th>收集数</th><th>有效时间</th></tr></thead><tbody id="record-rows"></tbody></table><p id="empty-records">这一页，等你留下脚印。</p></div><p id="storage-note" class="small"></p></section></div>
+  <div id="help" class="overlay" hidden><section class="note" role="dialog" aria-modal="true" aria-labelledby="help-title"><button id="help-close" class="close" aria-label="关闭玩法">×</button><span class="eyebrow">一张小纸条</span><h2 id="help-title">听见自己的脚步。</h2><p>收集时钟，门开了就走。</p><div class="help-lines"><p>手机：按住并拖动，控制方向。</p><p>电脑：鼠标拖动、方向键或 WASD。</p><p>浅色脚印只是回忆。<br>避开深紫色的身影。</p><p>看见裂纹，就赶快离开。</p></div><button id="help-done" class="paper-button primary">知道了</button></section></div>
+</main>
+<script type="module" src="./app.mjs"></script>
+</body></html>
